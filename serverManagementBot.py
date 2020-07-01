@@ -20,16 +20,10 @@ def checkIfOnline(server):
         return 'Off'
     return 'On'
 
-def updateOnlinePlayers(server):
-    status = server.status()
-    NumPlayers = status.players.online
-    await bot.change_presence(activity = discord.Activity(type=discord.ActivityType.watching, name="{} Online Players!".format(NumPlayers)))
-        
 bot = commands.Bot(command_prefix='!')
 
 @bot.command(name='open-server', help='Open the server.')
 async def openServer(ctx): 
-    updateOnlinePlayers(connectToServer())
     await ctx.send("Opening the server... [Estimated Time: 20.0s]")
     subprocess.Popen(['java', '-Xmx2G', '-Xms1G', '-jar', 'spigot-1.16.1.jar'], cwd='C://Minecraft Server')
 
